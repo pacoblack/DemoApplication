@@ -27,7 +27,6 @@ public class ExampleUnitTest {
         assertEquals(kmp("asdfasdfasdfabcabcdasdfasdfasdf", "abcabcd"), 12);
     }
 
-
     public int kmp( String target, String source){
         int[] next = makeArray(source);
         int offset = 0;
@@ -68,5 +67,53 @@ public class ExampleUnitTest {
         }
 
         return result;
+    }
+
+    @Test
+    public void testQuickSort(){
+        quickSort(new int[]{1,2,3});
+        quickSort(new int[]{1,3,2});
+        quickSort(new int[]{3,2,1});
+        quickSort(new int[]{4, 3,2,1});
+        quickSort(new int[]{1,2,3,4});
+        quickSort(new int[]{1,3,2,4});
+    }
+
+
+    public void quickSort(int[] data){
+        quickSort(data, 0, data.length-1);
+        println(data, 0, data.length-1);
+    }
+
+    public void quickSort(int[] data, int start, int end){
+        if (start >= end){
+            return;
+        }
+        int i= start, j = end;
+        int value = data[start];
+        while(i < j){
+            for(;i<j;j--){
+                if (data[j] < value){
+                    data[i] = data[j];
+                    break;
+                }
+            }
+            for(;i<j;i++){
+                if(data[i] > value) {
+                    data[j] = data[i];
+                    break;
+                }
+            }
+        }
+        data[i] = value;
+
+        quickSort(data, start, i-1);
+        quickSort(data, i + 1, end);
+    }
+    static void println(int[] array, int start, int end){
+        for (int i = start;i<= end;i++) {
+            System.out.print(array[i] + ", ");
+        }
+        System.out.println();
     }
 }
