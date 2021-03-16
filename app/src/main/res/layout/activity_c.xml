@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.github.gang.widget.CustomShapeImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/sample"
+        app:shape="circle"
+        android:scaleType="centerCrop" />
+
+    <com.github.gang.widget.CircleImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/sample"
+        android:scaleType="centerCrop" />
+
+    <com.github.gang.widget.RectangleImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/sample"
+        android:scaleType="centerCrop" />
+
+    <com.github.gang.widget.SvgImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/sample"
+        app:svg_raw_resource="@raw/shape_star"
+        android:scaleType="centerCrop" />
+</LinearLayout>
