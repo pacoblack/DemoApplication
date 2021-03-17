@@ -18,6 +18,15 @@
         </activity>
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
+
+        <service android:name=".aidl.MyService"
+            android:process=":remote"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.github.gang.myservice"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
