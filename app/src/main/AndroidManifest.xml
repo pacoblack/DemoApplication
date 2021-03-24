@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
+        <activity android:name=".LongConnectActivity" />
+        <activity android:name=".MyLifeActivity" />
 
         <service android:name=".aidl.MyService"
             android:process=":remote"
@@ -27,6 +29,7 @@
                 <action android:name="com.github.gang.myservice"/>
             </intent-filter>
         </service>
+        <service android:name="com.github.mina.service.LongConnectService" />
     </application>
 
 </manifest>

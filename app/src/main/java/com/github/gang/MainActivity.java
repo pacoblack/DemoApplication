@@ -66,11 +66,12 @@ public class MainActivity extends AppCompatActivity {
         iv_drag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MainActivity.this, ThirdActivity.class));
-                Intent intent = new Intent();
-                intent.setAction("com.github.gang.myservice");
-                intent.setPackage("com.github.gang");
-                bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+                startActivity(new Intent(MainActivity.this, MyLifeActivity.class));
+//                Intent intent = new Intent();
+//                intent.setAction("com.github.gang.myservice");
+//                intent.setPackage("com.github.gang");
+//                bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+
             }
         });
     }
