@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         iv_drag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MyLifeActivity.class));
+                startActivity(new Intent(MainActivity.this, ViewEventActivity.class));
+//                startActivity(new Intent(MainActivity.this, MyLifeActivity.class));
 //                Intent intent = new Intent();
 //                intent.setAction("com.github.gang.myservice");
 //                intent.setPackage("com.github.gang");

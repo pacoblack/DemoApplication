@@ -27,6 +27,7 @@
         <activity android:name=".ThirdActivity" />
         <activity android:name=".LongConnectActivity" />
         <activity android:name=".MyLifeActivity" />
+        <activity android:name=".ViewEventActivity" />
 
         <service android:name=".aidl.MyService"
             android:process=":remote"
