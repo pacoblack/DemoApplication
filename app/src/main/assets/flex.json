@@ -1,0 +1,93 @@
+{
+  "layouts": [
+    {
+      "ad_format": 4,
+      "version": "0",
+      "minFrameworkVersion": "1.2.0",
+      "desc": "插屏样式",
+      "flex_direction": "column",
+      "subviews": [
+        {
+          "margin": [
+            0,
+            0,
+            10,
+            20
+          ],
+          "size": [
+            20,
+            20
+          ],
+          "type": "button",
+          "name": "ad_close",
+          "layout_alignSelf": "flex-end"
+        },
+        {
+          "margin": [
+            16,
+            10,
+            16,
+            0
+          ],
+          "type": "label",
+          "name": "ad_title",
+          "font_size": 17,
+          "font_color": "#000000",
+          "font_name": "PingFangSC-Regular",
+          "lines": 1,
+          "text": "aaaa",
+          "line_height": 17,
+          "layout_alignSelf": "flex-start"
+        },
+        {
+          "margin": [
+            16,
+            10,
+            16,
+            0
+          ],
+          "type": "label",
+          "name": "ad_text",
+          "font_size": 15,
+          "font_color": "#666666",
+          "font_name": "PingFangSC-Regular",
+          "lines": 1,
+          "line_height": 15,
+          "text": "广告",
+          "layout_alignSelf": "flex-end"
+        },
+        {
+          "margin": [
+            0,
+            10,
+            10,
+            10
+          ],
+          "type": "imageView",
+          "name": "ad_image",
+          "corner_radius": 5,
+          "width": 500,
+          "height": 300,
+          "src": "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo_2x.jpg!0x0.webp",
+          "background_color": "#ffffff",
+          "layout_alignSelf": "flex-start"
+        },
+        {
+          "margin": [
+            0,
+            10,
+            0,
+            0
+          ],
+          "type": "imageView",
+          "name": "ad_logo",
+          "width": 250,
+          "height": 150,
+          "image_width": 40,
+          "image_height": 20,
+          "layout_alignSelf": "flex-start"
+        }
+      ]
+    }
+  ]
+}
