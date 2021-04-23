@@ -79,6 +79,10 @@ public class FlexKeys {
         String LABEL = "label";
         String BUTTON = "button";
         String IMAGE = "imageView";
+        String LOGO = "logoView";
+        String CLOSE = "closeView";
+        String SKIP = "skipView";
+        String BRAND = "brand";
     }
 
 }
