@@ -3,6 +3,7 @@ package com.github.gang.flexbox;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,40 +29,50 @@ public class FlexAdapter extends RecyclerView.Adapter {
     public static final int TYPE_IMAGE = 3;
 
     private final JSONArray jsonArray;
+    private final View view;
     private ImageViewProcess imageViewProcess = new ImageViewProcess();
     private TextViewProcess textViewProcess = new TextViewProcess();
     private ButtonViewProcess buttonViewProcess = new ButtonViewProcess();
     private BlankViewProcess unknownViewProcess = new BlankViewProcess();
 
-    public FlexAdapter(JSONArray jsonArray) {
+    public FlexAdapter(JSONArray jsonArray, View view) {
         this.jsonArray = jsonArray;
+        this.view = view;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        FrameLayout frameLayout = FlexViewFactory.newFrameLayout(parent.getContext());
         switch (viewType){
             case TYPE_LABEL:
-                return new RecyclerView.ViewHolder(new TextView(parent.getContext())) {};
+                frameLayout.addView(new TextView(parent.getContext()));
+                return new RecyclerView.ViewHolder(frameLayout) {};
             case TYPE_BUTTON:
-                return new RecyclerView.ViewHolder(new Button(parent.getContext())) {};
+                frameLayout.addView(new Button(parent.getContext()));
+                return new RecyclerView.ViewHolder(frameLayout) {};
             case TYPE_IMAGE:
-                return new RecyclerView.ViewHolder(new ImageView(parent.getContext())) {};
+                frameLayout.addView(new ImageView(parent.getContext()));
+                return new RecyclerView.ViewHolder(frameLayout) {};
             default:
-                return new RecyclerView.ViewHolder(new View(parent.getContext())) {};
+                return new RecyclerView.ViewHolder(frameLayout) {};
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        View view = holder.itemView;
-        if (view instanceof ImageView){
-            imageViewProcess.createDynamicView((ImageView) view, getData(position));
-        } else if (view instanceof Button){
-            buttonViewProcess.createDynamicView((Button) view, getData(position));
-        } else if (view instanceof TextView){
-            textViewProcess.createDynamicView((TextView) view, getData(position));
+        ViewGroup viewGroup = (ViewGroup) holder.itemView;
+
+        if (viewGroup.getChildAt(0) instanceof ImageView){
+            imageViewProcess.createDynamicView(viewGroup.getChildAt(0), viewGroup, getData(position));
+        } else if (viewGroup.getChildAt(0) instanceof Button){
+            buttonViewProcess.createDynamicView((Button) viewGroup.getChildAt(0), viewGroup, getData(position));
+        } else if (viewGroup.getChildAt(0) instanceof TextView){
+            textViewProcess.createDynamicView((TextView) viewGroup.getChildAt(0), viewGroup, getData(position));
         } else {
-            unknownViewProcess.apply(view, getData(position));
+            unknownViewProcess.applyLayoutParams(viewGroup, getData(position));
+            ViewGroup.LayoutParams lp = viewGroup.getLayoutParams();
+            lp.width = this.view.getMeasuredWidth();
+            viewGroup.setLayoutParams(lp);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.github.gang.flexbox.process;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.gang.flexbox.FlexLayoutHelper;
@@ -26,8 +27,17 @@ import static com.github.gang.flexbox.json.FlexKeys.SubView.WIDTH;
 
 public class LayoutParamsHelper {
 
-    public static ViewGroup.MarginLayoutParams createMarginLayoutParams(JSONObject jsonObject){
-        ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    public static ViewGroup.MarginLayoutParams createMarginLayoutParams(View view, JSONObject jsonObject){
+        ViewGroup.LayoutParams viewLayoutParams = null;
+        if (view != null) {
+            viewLayoutParams = view.getLayoutParams();
+        }
+        ViewGroup.MarginLayoutParams layoutParams;
+        if (viewLayoutParams == null) {
+            layoutParams = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        } else {
+            layoutParams = new ViewGroup.MarginLayoutParams(viewLayoutParams);
+        }
         if (jsonObject == null){
             return layoutParams;
         }
@@ -55,8 +65,8 @@ public class LayoutParamsHelper {
         return layoutParams;
     }
 
-    public static FlexboxLayoutManager.LayoutParams createFlexLayoutParams(JSONObject jsonObject){
-        ViewGroup.LayoutParams params = createMarginLayoutParams(jsonObject);
+    public static FlexboxLayoutManager.LayoutParams createFlexLayoutParams(View view, JSONObject jsonObject){
+        ViewGroup.LayoutParams params = createMarginLayoutParams(view, jsonObject);
 
         FlexboxLayoutManager.LayoutParams layoutParams = new FlexboxLayoutManager.LayoutParams(params);
         if (jsonObject != null) {

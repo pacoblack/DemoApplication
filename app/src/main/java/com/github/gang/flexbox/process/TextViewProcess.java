@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.gang.flexbox.DynamicViewComponent;
@@ -24,22 +25,27 @@ import static com.github.gang.flexbox.json.FlexKeys.SubView.LINES;
 import static com.github.gang.flexbox.json.FlexKeys.SubView.LINE_HEIGHT;
 import static com.github.gang.flexbox.json.FlexKeys.SubView.TEXT;
 
-public class TextViewProcess extends BlankViewProcess implements DynamicViewComponent<TextView> {
+public class TextViewProcess extends BlankViewProcess implements DynamicViewComponent {
 
     @Override
-    public TextView createDynamicView(Context context, JSONObject jsonObject) {
+    public View createDynamicView(Context context, ViewGroup viewGroup, JSONObject jsonObject) {
         TextView textView = new TextView(context);
-        return createDynamicView(textView, jsonObject);
+        if (viewGroup != null) {
+            viewGroup.addView(textView);
+        }
+        return createDynamicView(textView, viewGroup, jsonObject);
     }
 
     @Override
-    public TextView createDynamicView(TextView view, JSONObject jsonObject) {
-        apply(view, jsonObject);
+    public View createDynamicView(View view, ViewGroup viewGroup, JSONObject jsonObject) {
+        applyLayoutParams(viewGroup, jsonObject);
+        addSubView(viewGroup, jsonObject);
+        setView(view, jsonObject);
         return view;
     }
 
     @Override
-    public View apply(View view, JSONObject params) {
+    public View setView(View view, JSONObject params) {
         if(view instanceof TextView){
             if (params != null) {
                 if (params.has(FONT_SIZE)){
@@ -80,7 +86,7 @@ public class TextViewProcess extends BlankViewProcess implements DynamicViewComp
                 }
             }
         }
-        return super.apply(view, params);
+        return view;
     }
 
     public static void setLineHeight(TextView textView, int lineHeight) {

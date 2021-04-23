@@ -70,7 +70,7 @@
           "height": 300,
           "src": "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo_2x.jpg!0x0.webp",
           "background_color": "#ffffff",
-          "layout_alignSelf": "flex-start"
+          "layout_alignSelf": "flex-end"
         },
         {
           "margin": [
@@ -86,6 +86,9 @@
           "image_width": 40,
           "image_height": 20,
           "layout_alignSelf": "flex-start"
+        },
+        {
+          "type": "unknown"
         }
       ]
     }

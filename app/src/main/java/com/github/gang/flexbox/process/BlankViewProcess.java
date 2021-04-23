@@ -4,20 +4,41 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.gang.flexbox.CommonUtils;
+import com.github.gang.flexbox.DynamicEngine;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 import org.json.JSONObject;
 
+import static com.github.gang.flexbox.json.FlexKeys.Head.SUB_VIEWS;
 import static com.github.gang.flexbox.json.FlexKeys.SubView.BACKGROUND_COLOR;
 import static com.github.gang.flexbox.json.FlexKeys.SubView.CORNER_RADIUS;
-import static com.github.gang.flexbox.json.FlexKeys.SubView.DIRECTION;
 import static com.github.gang.flexbox.json.FlexKeys.SubView.EVENT_CLICK;
 
 public class BlankViewProcess {
 
-    public View apply(View view, JSONObject params){
-        view.setLayoutParams(LayoutParamsHelper.createFlexLayoutParams(params));
+    public View applyLayoutParams(View view, JSONObject params){
+        FlexboxLayoutManager.LayoutParams lp = LayoutParamsHelper.createFlexLayoutParams(view, params);
+        view.setLayoutParams(lp);
+        bindEvent(view, params);
+        return view;
+    }
+
+    protected void addSubView(ViewGroup viewGroup, JSONObject params) {
+        if (viewGroup != null && params != null && params.has(SUB_VIEWS)) {
+            RecyclerView flexView = DynamicEngine.createDynamicView(viewGroup.getContext(), params);
+            viewGroup.addView(flexView);
+        }
+    }
+
+    public View setView(View view, JSONObject params){
+        if (view == null) {
+            return null;
+        }
         if (params != null){
             boolean hasColor = false;
             int color = 0;
@@ -38,7 +59,6 @@ public class BlankViewProcess {
                 view.setBackground(gd);
             }
         }
-        bindEvent(view, params);
         return view;
     }
 
@@ -53,9 +73,6 @@ public class BlankViewProcess {
 
                     }
                 });
-                if (CommonUtils.isColor(params.optString(BACKGROUND_COLOR))){
-                    view.setBackgroundColor(Color.parseColor(params.optString(BACKGROUND_COLOR)));
-                }
             }
         }
     }

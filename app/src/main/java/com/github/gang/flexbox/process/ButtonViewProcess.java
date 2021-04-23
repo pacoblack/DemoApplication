@@ -2,6 +2,7 @@ package com.github.gang.flexbox.process;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 
@@ -9,21 +10,22 @@ import com.github.gang.flexbox.DynamicViewComponent;
 
 import org.json.JSONObject;
 
-public class ButtonViewProcess extends BlankViewProcess implements DynamicViewComponent<Button> {
+public class ButtonViewProcess extends BlankViewProcess implements DynamicViewComponent {
     @Override
-    public Button createDynamicView(Context context, JSONObject jsonObject) {
+    public View createDynamicView(Context context, ViewGroup viewGroup, JSONObject jsonObject) {
         Button button = new Button(context);
-        return createDynamicView(button, jsonObject);
+        if (viewGroup != null) {
+            viewGroup.addView(button);
+        }
+        return createDynamicView(button, viewGroup, jsonObject);
     }
 
     @Override
-    public Button createDynamicView(Button button, JSONObject jsonObject) {
-        apply(button, jsonObject);
+    public View createDynamicView(View button, ViewGroup viewGroup, JSONObject jsonObject) {
+        applyLayoutParams(viewGroup, jsonObject);
+        addSubView(viewGroup, jsonObject);
+        setView(button, jsonObject);
         return button;
     }
 
-    @Override
-    public View apply(View view, JSONObject params) {
-        return super.apply(view, params);
-    }
 }
