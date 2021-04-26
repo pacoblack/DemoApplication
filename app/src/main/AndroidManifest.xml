@@ -17,6 +17,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".logan.DemoApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
 
@@ -27,6 +28,9 @@
         <activity android:name=".MyLifeActivity" />
         <activity android:name=".ViewEventActivity" />
         <activity android:name=".FlexActivity" >
+
+        </activity>
+        <activity android:name=".logan.LoganActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
