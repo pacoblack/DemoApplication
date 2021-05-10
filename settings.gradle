@@ -1,3 +1,4 @@
+include ':mmkv'
 include ':logan'
 include ':app'
 rootProject.name = "DemoApplication"

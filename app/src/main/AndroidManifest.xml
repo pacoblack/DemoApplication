@@ -31,6 +31,8 @@
 
         </activity>
         <activity android:name=".logan.LoganActivity" >
+        </activity>
+        <activity android:name=".mmkv.demo.MMKVActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,6 +49,36 @@
             </intent-filter>
         </service>
         <service android:name="com.github.mina.service.LongConnectService" />
+        <service
+            android:name=".mmkv.demo.MyService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":mmkvdemo_svr">
+            <intent-filter>
+                <action android:name="com.github.gang.mmkv.demo.MyService"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".mmkv.demo.MyService_1"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":mmkvdemo_svr_1">
+            <intent-filter>
+                <action android:name="com.github.gang.mmkv.demo.MyService_1"/>
+            </intent-filter>
+        </service>
+
+        <provider android:name=".mmkv.demo.MultiProcessSharedPreferences"
+            android:authorities=".MultiProcessSharedPreferences"
+            android:process=".MultiProcessSharedPreferences"
+            android:exported="false">
+        </provider>
+
+        <provider
+            android:authorities="com.github.gang.mmkv.demo.MMKVContentProvider"
+            android:name="com.github.gang.mmkv.MMKVContentProvider"
+            android:exported="false">
+        </provider>
     </application>
 
 </manifest>

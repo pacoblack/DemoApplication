@@ -1,0 +1,88 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        externalNativeBuild {
+            cmake {
+                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-fvisibility=hidden", "-funwind-tables", "-fasynchronous-unwind-tables"
+                }
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+            version "3.8.0+"
+        }
+    }
+
+    flavorDimensions "stl_mode"
+    productFlavors {
+        StaticCpp {
+            dimension "stl_mode"
+            ext.artifactIdSuffix = 'static'
+            externalNativeBuild {
+                cmake {
+                    arguments = ["-DANDROID_STL=c++_static"]
+                }
+            }
+        }
+        SharedCpp {
+            dimension "stl_mode"
+            ext.artifactIdSuffix = ''
+            externalNativeBuild {
+                cmake {
+                    arguments = ["-DANDROID_STL=c++_shared"]
+                }
+            }
+        }
+        /*Flutter {
+            dimension "stl_mode"
+            ext.artifactIdSuffix = 'flutter'
+            externalNativeBuild {
+                cmake {
+                    arguments = ["-DANDROID_STL=c++_static"]
+                    cppFlags += "-DFORCE_POSIX"
+                }
+            }
+        }*/
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
