@@ -17,10 +17,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".logan.DemoApplication"
+        android:name=".DemoApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
@@ -33,12 +37,9 @@
         <activity android:name=".logan.LoganActivity" >
         </activity>
         <activity android:name=".mmkv.demo.MMKVActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".flutter.FirstFlutterActivity" />
+        <activity android:name=".flutter.SimpleFlutterActivity" />
 
         <service android:name=".aidl.MyService"
             android:process=":remote"

@@ -16,39 +16,57 @@ import com.github.logan.OnLoganProtocolStatus;
 import java.io.File;
 import java.io.IOException;
 
+import io.flutter.FlutterInjector;
+import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.FlutterEngineCache;
+import io.flutter.embedding.engine.dart.DartExecutor;
+
 public class DemoApplication extends Application implements MMKVHandler, MMKVContentChangeNotification {
     private static final String TAG = DemoApplication.class.getName();
     private static final String FILE_NAME = "logan_v1";
+    private FlutterEngine flutterEngine;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        flutterEngine = new FlutterEngine(this);
+
+        // Start executing Dart code to pre-warm the FlutterEngine.
+        flutterEngine.getDartExecutor().executeDartEntrypoint(
+                DartExecutor.DartEntrypoint.createDefault()
+        );
+
+        // Cache the FlutterEngine to be used by FlutterActivity.
+        FlutterEngineCache
+                .getInstance()
+                .put("my_engine_id", flutterEngine);
+
         initLogan();
         Logan.w("MyApplication onCreate", 3);
         Logan.w("MyApplication onCreate", 3);
         Logan.w("MyApplication onCreate", 3);
 
-        String dir = getFilesDir().getAbsolutePath() + "/mmkv";
-        String rootDir = MMKV.initialize(dir, new MMKV.LibLoader() {
-            @Override
-            public void loadLibrary(String libName) {
-                ReLinker.loadLibrary(DemoApplication.this, libName);
-            }
-        }, MMKVLogLevel.LevelInfo);
-        Log.i("MMKV", "mmkv root: " + rootDir);
-        Log.i("MMKV", "mmkv version: " + MMKV.version());
-
-        // set log level
-        MMKV.setLogLevel(MMKVLogLevel.LevelInfo);
-
-        // you can turn off logging
-        //MMKV.setLogLevel(MMKVLogLevel.LevelNone);
-
-        // log redirecting & recover logic
-        MMKV.registerHandler(this);
-
-        // content change notification
-        MMKV.registerContentChangeNotify(this);
+//        String dir = getFilesDir().getAbsolutePath() + "/mmkv";
+//        String rootDir = MMKV.initialize(dir, new MMKV.LibLoader() {
+//            @Override
+//            public void loadLibrary(String libName) {
+//                ReLinker.loadLibrary(DemoApplication.this, libName);
+//            }
+//        }, MMKVLogLevel.LevelInfo);
+//        Log.i("MMKV", "mmkv root: " + rootDir);
+//        Log.i("MMKV", "mmkv version: " + MMKV.version());
+//
+//        // set log level
+//        MMKV.setLogLevel(MMKVLogLevel.LevelInfo);
+//
+//        // you can turn off logging
+//        //MMKV.setLogLevel(MMKVLogLevel.LevelNone);
+//
+//        // log redirecting & recover logic
+//        MMKV.registerHandler(this);
+//
+//        // content change notification
+//        MMKV.registerContentChangeNotify(this);
     }
     private void initLogan() {
         String path = getApplicationContext().getExternalFilesDir(null).getAbsolutePath()

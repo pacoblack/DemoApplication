@@ -2,6 +2,7 @@ package com.github.gang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -15,6 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.gang.aidl.IMyAidlInterface;
+import com.github.gang.flutter.FirstFlutterActivity;
+import com.github.gang.flutter.SimpleFlutterActivity;
+
+import io.flutter.embedding.android.FlutterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,13 +71,14 @@ public class MainActivity extends AppCompatActivity {
         iv_drag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ViewEventActivity.class));
+//                startActivity(new Intent(MainActivity.this, ViewEventActivity.class));
 //                startActivity(new Intent(MainActivity.this, MyLifeActivity.class));
 //                Intent intent = new Intent();
 //                intent.setAction("com.github.gang.myservice");
 //                intent.setPackage("com.github.gang");
 //                bindService(intent, serviceConnection, BIND_AUTO_CREATE);
 
+                startActivity(new FlutterActivity.CachedEngineIntentBuilder(FlutterActivity.class, "my_engine_id").build(MainActivity.this));
             }
         });
     }

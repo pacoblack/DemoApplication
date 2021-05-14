@@ -1,4 +1,12 @@
 include ':mmkv'
 include ':logan'
 include ':app'
+//加入下面配置
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        'DemoApplication/mix_flutter/.android/include_flutter.groovy'
+))
 rootProject.name = "DemoApplication"
+include ':mix_flutter'
+project(':mix_flutter').projectDir = new File('../mix_flutter')
