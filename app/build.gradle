@@ -53,6 +53,11 @@ android {
         pickFirst 'lib/armeabi-v7a/libc++_shared.so'
         pickFirst 'lib/arm64-v8a/libc++_shared.so'
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
 }
 repositories{
     flatDir{
@@ -87,4 +92,5 @@ dependencies {
     implementation project(path: ':logan')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21"
     implementation 'com.getkeepsafe.relinker:relinker:1.3.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
 }
