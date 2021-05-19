@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".CoroutineOkHttpNetActivity">
+
+        <Button
+            android:id="@+id/btnNormalRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retrofit正常请求"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCoroutineRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用协程请求"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCoroutineRequest1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用Retrofit2.6加协程请求"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCoroutineRequest2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用Retrofit2.6加协程请求使用异常处理器"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnHandleResponseFormat1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="响应格式统一处理1"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnHandleResponseFormat2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="响应格式统一处理2"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnHandleLowLevelResponseFormat1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retrofit2.6以下响应格式统一处理1"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnHandleLowLevelResponseFormat2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retrofit2.6以下响应格式统一处理2"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            tools:text="请求结果" />
+
+
+    </LinearLayout>
+</ScrollView>

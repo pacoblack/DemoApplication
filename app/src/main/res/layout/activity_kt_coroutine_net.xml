@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".CoroutineOkHttpNetActivity">
+
+        <Button
+            android:id="@+id/btnNormalRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OkHttp正常请求" />
+
+        <Button
+            android:id="@+id/btnCoroutineRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用协程请求" />
+
+        <Button
+            android:id="@+id/btnCoroutineRequest1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="两次网络请求，第二次请求依赖第一次请求结果" />
+
+        <Button
+            android:id="@+id/btnCoroutineRequest2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="顺序发起多次网络请求，网络请求之间没有依赖关系" />
+
+        <Button
+            android:id="@+id/btnCoroutineRequest3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="并行发起多次网络请求，网络请求之间没有依赖关系" />
+
+        <Button
+            android:id="@+id/btnCancelCoroutine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="取消协程，协程取消的时候要取消网络请求" />
+
+        <Button
+            android:id="@+id/btnCatchException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="捕获异常" />
+
+        <Button
+            android:id="@+id/btnCanNotCatchException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="捕获不到异常" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            tools:text="请求结果" />
+
+
+    </LinearLayout>
+</ScrollView>

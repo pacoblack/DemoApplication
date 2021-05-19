@@ -40,6 +40,10 @@
         </activity>
         <activity android:name=".flutter.FirstFlutterActivity" />
         <activity android:name=".flutter.SimpleFlutterActivity" />
+        <activity android:name=".kt.activity.CoroutineRetrofitActivity" />
+        <activity android:name=".kt.activity.CoroutineOkHttpActivity" />
+        <activity android:name=".kt.activity.AsyncActivity" />
+        <activity android:name=".kt.dagger.DaggerActivity" />
 
         <service android:name=".aidl.MyService"
             android:process=":remote"
