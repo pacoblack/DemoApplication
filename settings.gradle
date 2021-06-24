@@ -1,5 +1,5 @@
 include ':mmkv'
-include ':logan'
+//include ':logan'
 include ':app'
 //加入下面配置
 setBinding(new Binding([gradle: this]))

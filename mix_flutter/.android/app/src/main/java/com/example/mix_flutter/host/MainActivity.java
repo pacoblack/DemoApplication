@@ -1,4 +1,4 @@
-package com.example.test_flutter.host;
+package com.example.mix_flutter.host;
 
 import io.flutter.embedding.android.FlutterActivity;
 
